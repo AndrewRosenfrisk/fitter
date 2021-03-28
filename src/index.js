@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 const NAVITEMS = [
   { id: "page-home", path: "/", title: "Home" },
-  { id: "page-food", path: "/FoodForm", title: "Food" },
+  { id: "page-food", path: "/FoodPage", title: "Food" },
   { id: "page-activity", path: "/activity", title: "Activity" },
   { id: "page-biometric", path: "/biometric", title: "Biometric" }
 ];

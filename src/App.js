@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';
-import FoodForm from './components/FoodForm';
+import FoodPage from './components/FoodPage';
 import Activity from './components/Activity';
 import Biometric from './components/Biometric';
 
@@ -30,8 +30,8 @@ function App(props) {
       </ul>
       <Switch>
         <Switch>
-          <Route path="/foodForm">
-            <FoodForm foodItems={props.foodItems} />
+          <Route path="/foodPage">
+            <FoodPage foodItems={props.foodItems} />
           </Route>
           <Route path="/activity">
             <Activity />
