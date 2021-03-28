@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const NAVITEMS = [
+  { id: "page-home", path: "/", title: "Home" },
+  { id: "page-food", path: "/food", title: "Food" },
+  { id: "page-activity", path: "/activity", title: "Activity" },
+  { id: "page-biometric", path: "/biometric", title: "Biometric" }
+];
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App navItems={NAVITEMS} />
   </React.StrictMode>,
   document.getElementById('root')
 );

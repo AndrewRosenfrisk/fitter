@@ -1,24 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+import Food from './components/Food';
+import Activity from './components/Activity';
+import Biometric from './components/Biometric';
 
-function App() {
+import NavList from './components/NavList';
+
+function App(props) {
+  console.log(props)
+
+  const navList = props.navItems.map(item => (
+    <NavList
+      id={item.id}
+      path={item.path}
+      title={item.title}
+      key={item.id}
+    />
+  ));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <h1>Fitter</h1>
+      <ul>
+        {navList}
+      </ul>
+      <Switch>
+        <Switch>
+          <Route path="/food">
+            <Food />
+          </Route>
+          <Route path="/activity">
+            <Activity />
+          </Route>
+          <Route path="/biometric">
+            <Biometric />
+          </Route>
+        </Switch>
+      </Switch>
+    </Router>
+    // <Router>
+    //   <div className="App">
+    //     <h1>Fitter</h1>
+    //     <ul>
+    //       <li>
+    //         <Link to="/">Home</Link>
+    //       </li>
+    //       <li>
+    //         <Link to="/food">Food</Link>
+    //       </li>
+    //       <li>
+    //         <Link to="/activity">Activity</Link>
+    //       </li>
+    //       <li>
+    //         <Link to="/biometric">Biometric</Link>
+    //       </li>
+    //     </ul>
+    //   </div>
+    //   <Switch>
+    //     <Route path="/food">
+    //       <Food />
+    //     </Route>
+    //     <Route path="/activity">
+    //       <Activity />
+    //     </Route>
+    //     <Route path="/biometric">
+    //       <Biometric />
+    //     </Route>
+    //   </Switch>
+    // </Router>
   );
 }
 
