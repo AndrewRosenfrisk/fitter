@@ -12,9 +12,9 @@ const NAVITEMS = [
 ];
 
 const FOODITEMS = [
-  { id: "fooditem-0", name: "Mushrooms", servingSize: 3, calories: 100 },
-  { id: "fooditem-1", name: "Steak Filet", servingSize: 10, calories: 300 },
-  { id: "fooditem-2", name: "Spaghetti", servingSize: 5, calories: 500 },
+  { id: "fooditem-0", selected: false, name: "Mushrooms", servingSize: 3, calories: 100 },
+  { id: "fooditem-1", selected: true, name: "Steak Filet", servingSize: 10, calories: 300 },
+  { id: "fooditem-2", selected: false, name: "Spaghetti", servingSize: 5, calories: 500 },
 ]
 
 ReactDOM.render(
