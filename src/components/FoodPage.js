@@ -26,10 +26,10 @@ export default function FoodPage(props) {
         setFoodItems(remainingFoodItems);
     }
 
-    function editFoodItem(id, newName) {
+    function editFoodItem(id, newName, newServingSize, newCalories) {
         const editedFoodItemList = foodItems.map(item => {
             if (id === item.id) {
-                return { ...item, name: newName }
+                return { ...item, name: newName, servingSize: newServingSize, calories: newCalories }
             }
             return item;
         });
