@@ -26,6 +26,16 @@ export default function FoodPage(props) {
         setFoodItems(remainingFoodItems);
     }
 
+    function editFoodItem(id, newName) {
+        const editedFoodItemList = foodItems.map(item => {
+            if (id === item.id) {
+                return { ...item, name: newName }
+            }
+            return item;
+        });
+        setFoodItems(editedFoodItemList);
+    }
+
     const foodItemList = foodItems.map(item => (
         <FoodItem
             id={item.id}
@@ -35,7 +45,8 @@ export default function FoodPage(props) {
             calories={item.calories}
             key={item.id}
             toggleFoodItemSelected={toggleFoodItemSelected}
-            deleteFoodItem={deleteFoodItem} />
+            deleteFoodItem={deleteFoodItem}
+            editFoodItem={editFoodItem} />
     ));
 
     return (
