@@ -11,7 +11,7 @@ export default function FoodPage(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        props.addFoodItem(name);
+        alert(name);
         setName("");
     }
 
