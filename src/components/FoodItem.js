@@ -36,7 +36,7 @@ export default function FoodItem(props) {
                 <input
                     id={"servingSize" + props.id}
                     type="number"
-                    value={newServingSize}
+                    value={newServingSize ? newServingSize : props.servingSize}
                     onChange={handleServingSizeChange}
                 />
                 <label htmlFor={"name" + props.id}>
@@ -45,7 +45,7 @@ export default function FoodItem(props) {
                 <input
                     id={"name" + props.id}
                     type="text"
-                    value={newName}
+                    value={newName ? newName : props.name}
                     onChange={handleNameChange}
                 />
                 <label htmlFor={"calories" + props.id}>
@@ -54,7 +54,7 @@ export default function FoodItem(props) {
                 <input
                     id={"calories" + props.id}
                     type="number"
-                    value={newCalories}
+                    value={newCalories ? newCalories : props.calories}
                     onChange={handleCalorieChange}
                 />
             </div>
