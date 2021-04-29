@@ -1,47 +1,17 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
-import FoodPage from './components/FoodPage';
-import Activity from './components/Activity';
-import Biometric from './components/Biometric';
+import React from "react";
+import Foods from "./components/Foods";
+import FoodsProvider from "./store/FoodsProvider";
 
-import NavList from './components/NavList';
-
-function App(props) {
-  console.log(props)
-
-  const navList = props.navItems.map(item => (
-    <NavList
-      id={item.id}
-      path={item.path}
-      title={item.title}
-      key={item.id}
-    />
-  ));
-
+function App() {
   return (
-    <Router>
+    <div>
       <h1>Fitter</h1>
-      <ul>
-        {navList}
-      </ul>
-      <Switch>
-        <Switch>
-          <Route path="/foodPage">
-            <FoodPage foodItems={props.foodItems} />
-          </Route>
-          <Route path="/activity">
-            <Activity />
-          </Route>
-          <Route path="/biometric">
-            <Biometric />
-          </Route>
-        </Switch>
-      </Switch>
-    </Router>
+      <FoodsProvider>
+        <Foods>Foods</Foods>
+      </FoodsProvider>
+      {/* <h3>Recipes</h3>
+      <h3>Diary</h3> */}
+    </div>
   );
 }
 
