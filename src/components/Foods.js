@@ -14,11 +14,11 @@ const Foods = () => {
   const foodsCtx = useContext(FoodsContext);
 
   const removeFoodHandler = async (id) => {
-    await fetch(
-      `https://react-http-11b63-default-rtdb.firebaseio.com/foods/${id}.json`,
-      { method: "DELETE" }
-    );
+    try {
     foodsCtx.removeFood(id);
+    } catch (error) {
+      throw new Error(error.message)
+    }
   };
   const addFoodHandler = async (food) => {
     try {
@@ -30,28 +30,7 @@ const Foods = () => {
   };
 
   useEffect(() => {
-    const fetchFoods = async () => {
-      const response = await fetch(
-        "https://react-http-11b63-default-rtdb.firebaseio.com/foods.json"
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      const data = await response.json();
-
-      const loadedFoods = [];
-
-      for (const key in data) {
-        loadedFoods.push({
-          id: key,
-          calories: data[key].calories,
-          name: data[key].name,
-          portion: data[key].portion,
-        });
-      }
-      console.log("infinite loop check");
-      foodsCtx.setFoods(loadedFoods);
-    };
+    const fetchFoods = () => {foodsCtx.setFoods();};
     fetchFoods();
   }, []);
 

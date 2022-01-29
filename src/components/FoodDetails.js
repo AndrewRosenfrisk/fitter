@@ -8,16 +8,13 @@ const FoodDetails = (props) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await fetch(
-      `https://react-http-11b63-default-rtdb.firebaseio.com/foods/${newFood.id}.json`,
-      { method: "PUT", body: JSON.stringify({ ...newFood }) }
-    ).catch((error) => {
+    try {
+      foodsCtx.editFood(newFood);
+      props.onCancelFood();
+    } catch (error) {
       props.onCancelFood();
       throw new Error(error.message);
-    });
-
-    foodsCtx.editFood(newFood);
-    props.onCancelFood();
+    }
   };
 
   const foodChangeHandler = (e) => {
