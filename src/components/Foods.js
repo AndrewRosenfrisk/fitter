@@ -21,18 +21,12 @@ const Foods = () => {
     foodsCtx.removeFood(id);
   };
   const addFoodHandler = async (food) => {
-    await fetch(
-      "https://react-http-11b63-default-rtdb.firebaseio.com/foods.json",
-      { method: "POST", body: JSON.stringify({ ...food }) }
-    ).then(response => response.json())
-    .then(data => {
-      foodsCtx.addFood({  ...food, id: data.name})
-  }
-    )
-    .catch((error) => {
+    try {
+      foodsCtx.addFood(food);
+    } catch (error) {
       setShowModal(false);
       throw new Error(error.message);
-    });
+    }
   };
 
   useEffect(() => {

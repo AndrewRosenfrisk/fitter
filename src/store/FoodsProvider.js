@@ -41,8 +41,18 @@ const FoodsProvider = (props) => {
   const editFoodHandler = (food) => {
     dispatchFoodsAction({ type: "EDIT_FOOD", food: food });
   };
-  const addFoodHandler = (food) => {
-    dispatchFoodsAction({ type: "ADD_FOOD", food: food });
+  const addFoodHandler = async (food) => {
+    await fetch(
+      "https://react-http-11b63-default-rtdb.firebaseio.com/foods.json",
+      { method: "POST", body: JSON.stringify({ ...food }) }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        dispatchFoodsAction({
+          type: "ADD_FOOD",
+          food: { ...food, id: data.name },
+        });
+      });
   };
   const removeFoodHandler = (id) => {
     dispatchFoodsAction({ type: "REMOVE_FOOD", id: id });
