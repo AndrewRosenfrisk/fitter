@@ -24,11 +24,15 @@ const Foods = () => {
     await fetch(
       "https://react-http-11b63-default-rtdb.firebaseio.com/foods.json",
       { method: "POST", body: JSON.stringify({ ...food }) }
-    ).catch((error) => {
+    ).then(response => response.json())
+    .then(data => {
+      foodsCtx.addFood({  ...food, id: data.name})
+  }
+    )
+    .catch((error) => {
       setShowModal(false);
       throw new Error(error.message);
     });
-    foodsCtx.addFood(food);
   };
 
   useEffect(() => {
