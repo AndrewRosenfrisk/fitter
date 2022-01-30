@@ -14,19 +14,10 @@ const Foods = () => {
   const foodsCtx = useContext(FoodsContext);
 
   const removeFoodHandler = (id) => {
-    try {
-      foodsCtx.removeFood(id);
-    } catch (error) {
-      throw new Error(error.message);
-    }
+   foodsCtx.removeFood(id);
   };
   const addFoodHandler = (food) => {
-    try {
-      foodsCtx.addFood(food);
-    } catch (error) {
-      setHideModal(false);
-      throw new Error(error.message);
-    }
+    foodsCtx.addFood(food);
   };
 
   useEffect(() => {

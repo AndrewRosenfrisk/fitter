@@ -57,34 +57,29 @@ const FoodsProvider = (props) => {
   };
 
   const editFoodHandler = async (food) => {
-    await fetch(`${BASE_URL}${food.id}.json`, {
+    const response = await fetch(`${BASE_URL}${food.id}.json`, {
       method: "PUT",
       body: JSON.stringify({ ...food }),
-    }).then((response) => {
-      dispatchFoodsAction({ type: "EDIT_FOOD", food: food });
     });
+
+    dispatchFoodsAction({ type: "EDIT_FOOD", food: food });
   };
 
   const addFoodHandler = async (food) => {
-    await fetch(`${BASE_URL}.json`, {
+    const response = await fetch(`${BASE_URL}.json`, {
       method: "POST",
       body: JSON.stringify({ ...food }),
     })
-      .then((response) => response.json())
-      .then((data) => {
+      const data = await response.json()
         dispatchFoodsAction({
           type: "ADD_FOOD",
           food: { ...food, id: data.name },
         });
-      });
   };
-  
+
   const removeFoodHandler = async (id) => {
-    await fetch(`${BASE_URL}${id}.json`, { method: "DELETE" }).then(
-      (response) => {
+    const response =   await fetch(`${BASE_URL}${id}.json`, { method: "DELETE" })
         dispatchFoodsAction({ type: "REMOVE_FOOD", id: id });
-      }
-    );
   };
 
   const foodsContext = {

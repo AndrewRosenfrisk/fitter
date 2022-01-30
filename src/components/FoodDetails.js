@@ -8,13 +8,8 @@ const FoodDetails = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    try {
-      foodsCtx.editFood(newFood);
-      props.onCancelFood();
-    } catch (error) {
-      props.onCancelFood();
-      throw new Error(error.message);
-    }
+    foodsCtx.editFood(newFood);
+    props.onCancelFood();
   };
 
   const foodChangeHandler = (e) => {
