@@ -6,7 +6,7 @@ const FoodDetails = (props) => {
 
   const foodsCtx = useContext(FoodsContext);
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     try {
       foodsCtx.editFood(newFood);

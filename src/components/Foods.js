@@ -13,14 +13,14 @@ const Foods = () => {
 
   const foodsCtx = useContext(FoodsContext);
 
-  const removeFoodHandler = async (id) => {
+  const removeFoodHandler = (id) => {
     try {
-    foodsCtx.removeFood(id);
+      foodsCtx.removeFood(id);
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     }
   };
-  const addFoodHandler = async (food) => {
+  const addFoodHandler = (food) => {
     try {
       foodsCtx.addFood(food);
     } catch (error) {
@@ -30,7 +30,9 @@ const Foods = () => {
   };
 
   useEffect(() => {
-    const fetchFoods = () => {foodsCtx.setFoods();};
+    const fetchFoods = () => {
+      foodsCtx.setFoods();
+    };
     fetchFoods();
   }, []);
 
