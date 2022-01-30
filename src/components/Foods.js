@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useContext, useEffect } from "react";
 import Food from "./Food";
 import NewFood from "./NewFood";
-import Modal from "./UI/Modal";
+import FitModal from "./UI/FitModal";
 import FoodsContext from "../store/foods-context";
+import { Button, ListGroup, Stack } from "react-bootstrap";
 
 const Foods = () => {
-  const [hideModal, setHideModal] = useState(true);
+  const [hideModal, setHideModal] = useState(false);
 
   const toggleFoods = () => {
     setHideModal((prevState) => !prevState);
@@ -29,8 +30,9 @@ const Foods = () => {
 
   return (
     <Fragment>
-      <h3>My Foods</h3>
-      <button onClick={toggleFoods}>+ Food</button>
+      <Stack gap={2}>
+      <Button variant="outline-primary" size="lg" onClick={toggleFoods}>+ Food</Button>
+      <ListGroup as="ul">
       {foodsCtx.foods.map((food) => (
         <Food
           id={food.id}
@@ -41,11 +43,11 @@ const Foods = () => {
           onRemove={removeFoodHandler.bind(null, food.id)}
         />
       ))}
-      {!hideModal && (
-        <Modal onClose={toggleFoods}>
+      </ListGroup>
+      </Stack>
+        <FitModal show={hideModal} title="New Entry" onClose={toggleFoods}>
           <NewFood toggleModal={toggleFoods} onAdd={addFoodHandler} />
-        </Modal>
-      )}
+        </FitModal>
     </Fragment>
   );
 };
