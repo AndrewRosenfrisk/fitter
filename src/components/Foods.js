@@ -5,10 +5,10 @@ import Modal from "./UI/Modal";
 import FoodsContext from "../store/foods-context";
 
 const Foods = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [hideModal, setHideModal] = useState(true);
 
   const toggleFoods = () => {
-    setShowModal((prevState) => !prevState);
+    setHideModal((prevState) => !prevState);
   };
 
   const foodsCtx = useContext(FoodsContext);
@@ -24,7 +24,7 @@ const Foods = () => {
     try {
       foodsCtx.addFood(food);
     } catch (error) {
-      setShowModal(false);
+      setHideModal(false);
       throw new Error(error.message);
     }
   };
@@ -50,7 +50,7 @@ const Foods = () => {
           onRemove={removeFoodHandler.bind(null, food.id)}
         />
       ))}
-      {!showModal && (
+      {!hideModal && (
         <Modal onClose={toggleFoods}>
           <NewFood toggleModal={toggleFoods} onAdd={addFoodHandler} />
         </Modal>
