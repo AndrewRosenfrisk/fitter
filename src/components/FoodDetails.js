@@ -6,16 +6,8 @@ const FoodDetails = (props) => {
 
   const foodsCtx = useContext(FoodsContext);
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    await fetch(
-      `https://react-http-11b63-default-rtdb.firebaseio.com/foods/${newFood.id}.json`,
-      { method: "PUT", body: JSON.stringify({ ...newFood }) }
-    ).catch((error) => {
-      props.onCancelFood();
-      throw new Error(error.message);
-    });
-
     foodsCtx.editFood(newFood);
     props.onCancelFood();
   };
