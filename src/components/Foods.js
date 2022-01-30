@@ -5,58 +5,24 @@ import Modal from "./UI/Modal";
 import FoodsContext from "../store/foods-context";
 
 const Foods = () => {
-  const [showModal, setShowModal] = useState(true);
+  const [hideModal, setHideModal] = useState(true);
 
   const toggleFoods = () => {
-    setShowModal((prevState) => !prevState);
+    setHideModal((prevState) => !prevState);
   };
 
   const foodsCtx = useContext(FoodsContext);
 
-  const removeFoodHandler = async (id) => {
-    await fetch(
-      `https://react-http-11b63-default-rtdb.firebaseio.com/foods/${id}.json`,
-      { method: "DELETE" }
-    );
-    foodsCtx.removeFood(id);
+  const removeFoodHandler = (id) => {
+   foodsCtx.removeFood(id);
   };
-  const addFoodHandler = async (food) => {
-    await fetch(
-      "https://react-http-11b63-default-rtdb.firebaseio.com/foods.json",
-      { method: "POST", body: JSON.stringify({ ...food }) }
-    ).then(response => response.json())
-    .then(data => {
-      foodsCtx.addFood({  ...food, id: data.name})
-  }
-    )
-    .catch((error) => {
-      setShowModal(false);
-      throw new Error(error.message);
-    });
+  const addFoodHandler = (food) => {
+    foodsCtx.addFood(food);
   };
 
   useEffect(() => {
-    const fetchFoods = async () => {
-      const response = await fetch(
-        "https://react-http-11b63-default-rtdb.firebaseio.com/foods.json"
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      const data = await response.json();
-
-      const loadedFoods = [];
-
-      for (const key in data) {
-        loadedFoods.push({
-          id: key,
-          calories: data[key].calories,
-          name: data[key].name,
-          portion: data[key].portion,
-        });
-      }
-      console.log("infinite loop check");
-      foodsCtx.setFoods(loadedFoods);
+    const fetchFoods = () => {
+      foodsCtx.setFoods();
     };
     fetchFoods();
   }, []);
@@ -75,7 +41,7 @@ const Foods = () => {
           onRemove={removeFoodHandler.bind(null, food.id)}
         />
       ))}
-      {!showModal && (
+      {!hideModal && (
         <Modal onClose={toggleFoods}>
           <NewFood toggleModal={toggleFoods} onAdd={addFoodHandler} />
         </Modal>
