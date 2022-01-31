@@ -1,7 +1,7 @@
 
 # Fitter
 
-This app is allows tracking of foods that you eat, portion sizes for those foods, and calories per portion size. You can currently create, change, and delete foods in addition to displaying the list itself.
+This app allows tracking of foods that you eat, portion sizes for those foods, and calories per portion size. You can currently create, change, and delete foods in addition to displaying the list itself.
 
 ## Description
 
