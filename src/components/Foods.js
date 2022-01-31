@@ -26,6 +26,7 @@ const Foods = () => {
       foodsCtx.setFoods();
     };
     fetchFoods();
+    // eslint-disable-next-line
   }, []);
 
   return (
