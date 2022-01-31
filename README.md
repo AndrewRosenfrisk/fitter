@@ -7,6 +7,11 @@ This app allows tracking of foods that you eat, portion sizes for those foods, a
 
 This project was bootstrapped using `create-react-app` and was built entirely in React. It persists data using a Firebase database.
 
+## Use the App
+
+You can access the app here:
+https://61f731f53594ff0007afa69d--angry-joliot-ba4206.netlify.app/
+
 ## Getting Started
 
 ### Dependencies
